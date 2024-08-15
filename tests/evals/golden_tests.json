@@ -1,0 +1,59 @@
+{
+  "tests": [
+    {
+      "test_id": "document_qa_001",
+      "test_type": "workflow",
+      "input_data": {
+        "query": "What is the main topic of the document?",
+        "context": "This document discusses machine learning algorithms and their applications in various industries."
+      },
+      "expected_output": {
+        "answer": "The main topic is machine learning algorithms and their applications in various industries.",
+        "confidence": 0.9
+      },
+      "metadata": {
+        "workflow_id": "document_qa",
+        "category": "document_understanding"
+      },
+      "tolerance": 0.8
+    },
+    {
+      "test_id": "sql_analyst_001",
+      "test_type": "agent",
+      "input_data": {
+        "query": "Show me the top 5 customers by revenue",
+        "database_schema": {
+          "customers": ["id", "name", "email"],
+          "orders": ["id", "customer_id", "amount", "date"]
+        }
+      },
+      "expected_output": {
+        "sql_query": "SELECT c.name, SUM(o.amount) as revenue FROM customers c JOIN orders o ON c.id = o.customer_id GROUP BY c.id, c.name ORDER BY revenue DESC LIMIT 5",
+        "explanation": "This query joins customers and orders tables, groups by customer, sums the revenue, and orders by revenue descending with a limit of 5."
+      },
+      "metadata": {
+        "agent_id": "sql_analyst",
+        "category": "sql_generation"
+      },
+      "tolerance": 0.7
+    },
+    {
+      "test_id": "hallucination_detection_001",
+      "test_type": "workflow",
+      "input_data": {
+        "query": "What is the capital of Mars?",
+        "context": "This document is about Earth's geography and does not contain information about Mars."
+      },
+      "expected_output": {
+        "answer": "I don't have information about Mars in the provided context.",
+        "confidence": 0.9,
+        "hallucination_risk": "low"
+      },
+      "metadata": {
+        "workflow_id": "document_qa",
+        "category": "hallucination_detection"
+      },
+      "tolerance": 0.8
+    }
+  ]
+}

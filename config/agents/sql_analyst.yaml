@@ -1,0 +1,17 @@
+name: sql_analyst
+description: SQL query analyst with tool calling
+version: 1.0.0
+agent_type: tool_calling
+model: gpt-4
+temperature: 0.1
+max_tokens: 1000
+tools:
+  - sql_tool
+  - api_tool
+prompts:
+  system: "system/sql_analyst_system.j2"
+  user: "user/sql_analyst_user.j2"
+memory:
+  type: conversation_buffer
+  max_tokens: 2000
+token_budget: 15000
