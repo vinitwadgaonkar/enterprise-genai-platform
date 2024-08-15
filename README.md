@@ -46,6 +46,150 @@
 
 </div>
 
+```mermaid
+graph TB
+    subgraph "🌐 Client Layer"
+        WEB[Web Interface]
+        API_CLIENT[API Clients]
+        MOBILE[Mobile Apps]
+    end
+    
+    subgraph "🚀 API Gateway"
+        FASTAPI[FastAPI REST API]
+        AUTH[Authentication]
+        RATE[Rate Limiting]
+        HEALTH[Health Checks]
+    end
+    
+    subgraph "🧠 Core Engine"
+        WORKFLOW[Workflow Engine]
+        AGENT[Agent Engine]
+        CONFIG[Config Loader]
+        PROMPT[Prompt Manager]
+    end
+    
+    subgraph "🔗 LangChain Integration"
+        RAG[RAG Chains]
+        TOOL[Tool Calling]
+        MEMORY[Memory Management]
+        CHAINS[Chain Orchestration]
+    end
+    
+    subgraph "🗄️ Vector Stores"
+        PGVECTOR[(pgvector<br/>PostgreSQL)]
+        FAISS[(Faiss<br/>In-Memory)]
+        UNIFIED[Unified Interface]
+    end
+    
+    subgraph "🔍 Retrieval System"
+        EMBED[Embedding Pipeline]
+        REWRITE[Query Rewriting]
+        RERANK[Cross-Encoder Reranking]
+        SEARCH[Vector Search]
+    end
+    
+    subgraph "🛠️ Tools & Integrations"
+        SQL[SQL Tool]
+        API_TOOL[API Tool]
+        CUSTOM[Custom Tools]
+        REGISTRY[Tool Registry]
+    end
+    
+    subgraph "📊 Observability Stack"
+        OTEL[OpenTelemetry]
+        PROM[Prometheus]
+        GRAF[Grafana]
+        LOGS[Structured Logging]
+    end
+    
+    subgraph "🧪 Evaluation Framework"
+        GOLDEN[Golden Tests]
+        HALLUC[Hallucination Detection]
+        METRICS[Quality Metrics]
+        EVALS[Automated Evals]
+    end
+    
+    subgraph "🐳 Infrastructure"
+        DOCKER[Docker Compose]
+        POSTGRES[(PostgreSQL)]
+        REDIS[(Redis)]
+        COLLECTOR[OTEL Collector]
+    end
+    
+    %% Connections
+    WEB --> FASTAPI
+    API_CLIENT --> FASTAPI
+    MOBILE --> FASTAPI
+    
+    FASTAPI --> WORKFLOW
+    FASTAPI --> AGENT
+    
+    WORKFLOW --> CONFIG
+    AGENT --> CONFIG
+    CONFIG --> PROMPT
+    
+    WORKFLOW --> RAG
+    AGENT --> TOOL
+    RAG --> MEMORY
+    TOOL --> CHAINS
+    
+    RAG --> EMBED
+    EMBED --> PGVECTOR
+    EMBED --> FAISS
+    PGVECTOR --> UNIFIED
+    FAISS --> UNIFIED
+    
+    EMBED --> REWRITE
+    REWRITE --> RERANK
+    RERANK --> SEARCH
+    
+    TOOL --> SQL
+    TOOL --> API_TOOL
+    TOOL --> CUSTOM
+    SQL --> REGISTRY
+    API_TOOL --> REGISTRY
+    CUSTOM --> REGISTRY
+    
+    FASTAPI --> OTEL
+    WORKFLOW --> OTEL
+    AGENT --> OTEL
+    OTEL --> PROM
+    PROM --> GRAF
+    
+    WORKFLOW --> GOLDEN
+    AGENT --> HALLUC
+    GOLDEN --> METRICS
+    HALLUC --> EVALS
+    
+    FASTAPI --> DOCKER
+    WORKFLOW --> POSTGRES
+    AGENT --> REDIS
+    OTEL --> COLLECTOR
+    
+    %% Styling
+    classDef client fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef api fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef core fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    classDef langchain fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef vector fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+    classDef retrieval fill:#f1f8e9,stroke:#33691e,stroke-width:2px
+    classDef tools fill:#e0f2f1,stroke:#004d40,stroke-width:2px
+    classDef observability fill:#fff8e1,stroke:#ff6f00,stroke-width:2px
+    classDef evaluation fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef infrastructure fill:#e3f2fd,stroke:#0277bd,stroke-width:2px
+    
+    class WEB,API_CLIENT,MOBILE client
+    class FASTAPI,AUTH,RATE,HEALTH api
+    class WORKFLOW,AGENT,CONFIG,PROMPT core
+    class RAG,TOOL,MEMORY,CHAINS langchain
+    class PGVECTOR,FAISS,UNIFIED vector
+    class EMBED,REWRITE,RERANK,SEARCH retrieval
+    class SQL,API_TOOL,CUSTOM,REGISTRY tools
+    class OTEL,PROM,GRAF,LOGS observability
+    class GOLDEN,HALLUC,METRICS,EVALS evaluation
+    class DOCKER,POSTGRES,REDIS,COLLECTOR infrastructure
+```
+
 ---
 
 ## 🚀 **Quick Start Guide**
@@ -90,6 +234,248 @@ curl -X POST "http://localhost:8000/api/v1/workflows/execute" \
 ### **🔄 Advanced Processing Pipeline**
 
 </div>
+
+```mermaid
+flowchart TD
+    START([🚀 User Request]) --> INPUT{Input Type?}
+    
+    INPUT -->|Workflow| WORKFLOW_CONFIG[📋 Load Workflow Config]
+    INPUT -->|Agent| AGENT_CONFIG[🤖 Load Agent Config]
+    
+    WORKFLOW_CONFIG --> WORKFLOW_STEPS[⚙️ Execute Workflow Steps]
+    AGENT_CONFIG --> AGENT_EXEC[🧠 Execute Agent Logic]
+    
+    subgraph "🔄 Workflow Execution"
+        WORKFLOW_STEPS --> STEP1[📄 Step 1: Retrieve]
+        STEP1 --> STEP2[🔍 Step 2: Rerank]
+        STEP2 --> STEP3[🤖 Step 3: Generate]
+        STEP3 --> STEP4[✅ Step 4: Validate]
+    end
+    
+    subgraph "🤖 Agent Execution"
+        AGENT_EXEC --> TOOL_SELECTION{Select Tool?}
+        TOOL_SELECTION -->|SQL| SQL_EXEC[🗄️ Execute SQL]
+        TOOL_SELECTION -->|API| API_EXEC[🌐 Call API]
+        TOOL_SELECTION -->|Custom| CUSTOM_EXEC[🛠️ Custom Tool]
+        SQL_EXEC --> AGENT_RESPONSE[💬 Agent Response]
+        API_EXEC --> AGENT_RESPONSE
+        CUSTOM_EXEC --> AGENT_RESPONSE
+    end
+    
+    subgraph "🔍 Retrieval Pipeline"
+        STEP1 --> QUERY_REWRITE[✏️ Query Rewriting]
+        QUERY_REWRITE --> VECTOR_SEARCH[🔍 Vector Search]
+        VECTOR_SEARCH --> PGVECTOR_SEARCH[(pgvector)]
+        VECTOR_SEARCH --> FAISS_SEARCH[(Faiss)]
+        PGVECTOR_SEARCH --> RERANK_RESULTS[🎯 Reranking]
+        FAISS_SEARCH --> RERANK_RESULTS
+        RERANK_RESULTS --> CONTEXT[📚 Context Assembly]
+    end
+    
+    subgraph "🧠 LLM Processing"
+        STEP3 --> PROMPT_TEMPLATE[📝 Load Prompt Template]
+        PROMPT_TEMPLATE --> SYSTEM_PROMPT[🎭 System Prompt]
+        PROMPT_TEMPLATE --> USER_PROMPT[👤 User Prompt]
+        SYSTEM_PROMPT --> LLM_CALL[🤖 LLM Call]
+        USER_PROMPT --> LLM_CALL
+        CONTEXT --> LLM_CALL
+        LLM_CALL --> GPT4[🧠 GPT-4 Processing]
+        GPT4 --> RESPONSE[💬 Generated Response]
+    end
+    
+    subgraph "📊 Observability & Monitoring"
+        WORKFLOW_STEPS --> OTEL_TRACE[📡 OpenTelemetry Trace]
+        AGENT_EXEC --> OTEL_TRACE
+        LLM_CALL --> TOKEN_COUNT[🔢 Token Counting]
+        TOKEN_COUNT --> COST_TRACK[💰 Cost Tracking]
+        OTEL_TRACE --> PROMETHEUS[📊 Prometheus Metrics]
+        PROMETHEUS --> GRAFANA[📈 Grafana Dashboard]
+    end
+    
+    subgraph "🧪 Quality Assurance"
+        RESPONSE --> HALLUC_CHECK[🔍 Hallucination Detection]
+        AGENT_RESPONSE --> HALLUC_CHECK
+        HALLUC_CHECK --> GOLDEN_TEST[🏆 Golden Answer Test]
+        GOLDEN_TEST --> QUALITY_SCORE[📊 Quality Score]
+        QUALITY_SCORE --> EVAL_RESULT[✅ Evaluation Result]
+    end
+    
+    RESPONSE --> OUTPUT[📤 Final Output]
+    AGENT_RESPONSE --> OUTPUT
+    EVAL_RESULT --> OUTPUT
+    
+    OUTPUT --> METRICS_UPDATE[📊 Update Metrics]
+    METRICS_UPDATE --> LOG_ENTRY[📝 Structured Logging]
+    LOG_ENTRY --> END([🎉 Response Delivered])
+    
+    %% Styling
+    classDef start fill:#e8f5e8,stroke:#2e7d32,stroke-width:3px
+    classDef process fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    classDef storage fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef llm fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+    classDef observability fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef quality fill:#e0f2f1,stroke:#00695c,stroke-width:2px
+    classDef output fill:#e8f5e8,stroke:#2e7d32,stroke-width:3px
+    
+    class START,END start
+    class WORKFLOW_STEPS,AGENT_EXEC,STEP1,STEP2,STEP3,STEP4,TOOL_SELECTION,SQL_EXEC,API_EXEC,CUSTOM_EXEC process
+    class PGVECTOR_SEARCH,FAISS_SEARCH storage
+    class PROMPT_TEMPLATE,SYSTEM_PROMPT,USER_PROMPT,LLM_CALL,GPT4,RESPONSE llm
+    class OTEL_TRACE,TOKEN_COUNT,COST_TRACK,PROMETHEUS,GRAFANA,METRICS_UPDATE,LOG_ENTRY observability
+    class HALLUC_CHECK,GOLDEN_TEST,QUALITY_SCORE,EVAL_RESULT quality
+    class OUTPUT output
+```
+
+---
+
+## 🛠️ **Technology Stack & Integration**
+
+<div align="center">
+
+### **🔧 Complete Technology Ecosystem**
+
+</div>
+
+```mermaid
+graph LR
+    subgraph "🎨 Frontend & Clients"
+        WEB[Web Apps]
+        MOBILE[Mobile Apps]
+        CLI[CLI Tools]
+        SDK[SDKs]
+    end
+    
+    subgraph "🚀 API Layer"
+        FASTAPI[FastAPI<br/>Python 3.11+]
+        ASYNC[Async Processing]
+        STREAMING[Response Streaming]
+        AUTH[Authentication]
+    end
+    
+    subgraph "🧠 AI & ML Stack"
+        OPENAI[OpenAI GPT-4<br/>text-embedding-3-large]
+        LANGCHAIN[LangChain<br/>Orchestration]
+        EMBEDDINGS[Embedding Pipeline]
+        RERANKING[Cross-Encoder<br/>Reranking]
+    end
+    
+    subgraph "🗄️ Data & Storage"
+        POSTGRES[(PostgreSQL<br/>+ pgvector)]
+        REDIS[(Redis<br/>Caching)]
+        FAISS[(Faiss<br/>Vector Search)]
+        FILES[File Storage]
+    end
+    
+    subgraph "🔍 Search & Retrieval"
+        VECTOR[Vector Search]
+        QUERY[Query Rewriting]
+        RERANK[Reranking]
+        HYBRID[Hybrid Search]
+    end
+    
+    subgraph "🛠️ Tools & Integrations"
+        SQL[SQL Execution]
+        API[API Calls]
+        CUSTOM[Custom Tools]
+        REGISTRY[Tool Registry]
+    end
+    
+    subgraph "📊 Observability"
+        OTEL[OpenTelemetry<br/>Tracing]
+        PROMETHEUS[Prometheus<br/>Metrics]
+        GRAFANA[Grafana<br/>Dashboards]
+        LOGS[Structured<br/>Logging]
+    end
+    
+    subgraph "🧪 Quality & Testing"
+        GOLDEN[Golden Tests]
+        HALLUC[Hallucination<br/>Detection]
+        EVALS[Automated<br/>Evaluation]
+        COVERAGE[Test Coverage]
+    end
+    
+    subgraph "🐳 Infrastructure"
+        DOCKER[Docker<br/>Containers]
+        COMPOSE[Docker Compose]
+        K8S[Kubernetes<br/>Ready]
+        CLOUD[Cloud<br/>Deployment]
+    end
+    
+    subgraph "🔄 CI/CD & DevOps"
+        GITHUB[GitHub Actions]
+        SECURITY[Security<br/>Scanning]
+        SBOM[SBOM<br/>Generation]
+        DEPLOY[Automated<br/>Deployment]
+    end
+    
+    %% Connections
+    WEB --> FASTAPI
+    MOBILE --> FASTAPI
+    CLI --> FASTAPI
+    SDK --> FASTAPI
+    
+    FASTAPI --> OPENAI
+    FASTAPI --> LANGCHAIN
+    LANGCHAIN --> EMBEDDINGS
+    EMBEDDINGS --> RERANKING
+    
+    LANGCHAIN --> POSTGRES
+    LANGCHAIN --> REDIS
+    EMBEDDINGS --> FAISS
+    
+    EMBEDDINGS --> VECTOR
+    VECTOR --> QUERY
+    QUERY --> RERANK
+    RERANK --> HYBRID
+    
+    LANGCHAIN --> SQL
+    LANGCHAIN --> API
+    SQL --> REGISTRY
+    API --> REGISTRY
+    
+    FASTAPI --> OTEL
+    LANGCHAIN --> OTEL
+    OTEL --> PROMETHEUS
+    PROMETHEUS --> GRAFANA
+    
+    FASTAPI --> GOLDEN
+    LANGCHAIN --> HALLUC
+    GOLDEN --> EVALS
+    HALLUC --> COVERAGE
+    
+    FASTAPI --> DOCKER
+    DOCKER --> COMPOSE
+    COMPOSE --> K8S
+    K8S --> CLOUD
+    
+    FASTAPI --> GITHUB
+    GITHUB --> SECURITY
+    SECURITY --> SBOM
+    SBOM --> DEPLOY
+    
+    %% Styling
+    classDef frontend fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef api fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    classDef ai fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+    classDef storage fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef search fill:#f1f8e9,stroke:#33691e,stroke-width:2px
+    classDef tools fill:#e0f2f1,stroke:#004d40,stroke-width:2px
+    classDef observability fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef quality fill:#e0f2f1,stroke:#00695c,stroke-width:2px
+    classDef infrastructure fill:#e3f2fd,stroke:#0277bd,stroke-width:2px
+    classDef cicd fill:#fff8e1,stroke:#ff6f00,stroke-width:2px
+    
+    class WEB,MOBILE,CLI,SDK frontend
+    class FASTAPI,ASYNC,STREAMING,AUTH api
+    class OPENAI,LANGCHAIN,EMBEDDINGS,RERANKING ai
+    class POSTGRES,REDIS,FAISS,FILES storage
+    class VECTOR,QUERY,RERANK,HYBRID search
+    class SQL,API,CUSTOM,REGISTRY tools
+    class OTEL,PROMETHEUS,GRAFANA,LOGS observability
+    class GOLDEN,HALLUC,EVALS,COVERAGE quality
+    class DOCKER,COMPOSE,K8S,CLOUD infrastructure
+    class GITHUB,SECURITY,SBOM,DEPLOY cicd
+```
 
 ---
 
@@ -235,6 +621,153 @@ trivy fs .
 - **🔒 Security Scanning**: Trivy vulnerability scanning, SBOM generation
 
 ---
+
+## 🚀 **Deployment Architecture**
+
+<div align="center">
+
+### **🏗️ Multi-Environment Deployment Strategy**
+
+</div>
+
+```mermaid
+graph TB
+    subgraph "🌐 Load Balancer & CDN"
+        LB[Load Balancer<br/>NGINX/HAProxy]
+        CDN[CDN<br/>CloudFlare/AWS]
+        SSL[SSL Termination]
+    end
+    
+    subgraph "🚀 Application Layer"
+        API1[API Instance 1<br/>FastAPI]
+        API2[API Instance 2<br/>FastAPI]
+        API3[API Instance 3<br/>FastAPI]
+        WORKER[Background Workers<br/>Celery]
+    end
+    
+    subgraph "🗄️ Database Layer"
+        POSTGRES_PRIMARY[(PostgreSQL<br/>Primary)]
+        POSTGRES_REPLICA[(PostgreSQL<br/>Read Replica)]
+        REDIS_CLUSTER[(Redis Cluster<br/>3 Nodes)]
+    end
+    
+    subgraph "🔍 Vector Search Layer"
+        PGVECTOR_PRIMARY[(pgvector<br/>Primary)]
+        PGVECTOR_REPLICA[(pgvector<br/>Replica)]
+        FAISS_CLUSTER[(Faiss Cluster<br/>Distributed)]
+    end
+    
+    subgraph "📊 Observability Stack"
+        OTEL_COLLECTOR[OTEL Collector<br/>Multiple Instances]
+        PROMETHEUS[Prometheus<br/>High Availability]
+        GRAFANA[Grafana<br/>Multi-tenant]
+        ALERTMANAGER[AlertManager<br/>PagerDuty/Slack]
+    end
+    
+    subgraph "🛠️ External Services"
+        OPENAI[OpenAI API<br/>GPT-4 + Embeddings]
+        MONITORING[External Monitoring<br/>DataDog/New Relic]
+        SECRETS[Secret Management<br/>HashiCorp Vault]
+    end
+    
+    subgraph "🐳 Container Orchestration"
+        K8S[Kubernetes Cluster]
+        DOCKER[Docker Registry]
+        HELM[Helm Charts]
+        OPERATOR[Custom Operators]
+    end
+    
+    subgraph "☁️ Cloud Infrastructure"
+        AWS[AWS<br/>EKS + RDS + ElastiCache]
+        GCP[GCP<br/>GKE + Cloud SQL + Memorystore]
+        AZURE[Azure<br/>AKS + Database + Redis]
+        HYBRID[Hybrid Cloud<br/>Multi-region]
+    end
+    
+    %% Connections
+    CDN --> LB
+    LB --> SSL
+    SSL --> API1
+    SSL --> API2
+    SSL --> API3
+    
+    API1 --> POSTGRES_PRIMARY
+    API2 --> POSTGRES_PRIMARY
+    API3 --> POSTGRES_PRIMARY
+    
+    API1 --> POSTGRES_REPLICA
+    API2 --> POSTGRES_REPLICA
+    API3 --> POSTGRES_REPLICA
+    
+    API1 --> REDIS_CLUSTER
+    API2 --> REDIS_CLUSTER
+    API3 --> REDIS_CLUSTER
+    
+    API1 --> PGVECTOR_PRIMARY
+    API2 --> PGVECTOR_PRIMARY
+    API3 --> PGVECTOR_PRIMARY
+    
+    API1 --> PGVECTOR_REPLICA
+    API2 --> PGVECTOR_REPLICA
+    API3 --> PGVECTOR_REPLICA
+    
+    API1 --> FAISS_CLUSTER
+    API2 --> FAISS_CLUSTER
+    API3 --> FAISS_CLUSTER
+    
+    API1 --> OTEL_COLLECTOR
+    API2 --> OTEL_COLLECTOR
+    API3 --> OTEL_COLLECTOR
+    WORKER --> OTEL_COLLECTOR
+    
+    OTEL_COLLECTOR --> PROMETHEUS
+    PROMETHEUS --> GRAFANA
+    PROMETHEUS --> ALERTMANAGER
+    
+    API1 --> OPENAI
+    API2 --> OPENAI
+    API3 --> OPENAI
+    
+    API1 --> SECRETS
+    API2 --> SECRETS
+    API3 --> SECRETS
+    
+    PROMETHEUS --> MONITORING
+    GRAFANA --> MONITORING
+    
+    K8S --> API1
+    K8S --> API2
+    K8S --> API3
+    K8S --> WORKER
+    
+    DOCKER --> K8S
+    HELM --> K8S
+    OPERATOR --> K8S
+    
+    K8S --> AWS
+    K8S --> GCP
+    K8S --> AZURE
+    K8S --> HYBRID
+    
+    %% Styling
+    classDef loadbalancer fill:#e8f5e8,stroke:#2e7d32,stroke-width:3px
+    classDef application fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    classDef database fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef vector fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+    classDef observability fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef external fill:#e0f2f1,stroke:#00695c,stroke-width:2px
+    classDef orchestration fill:#fff8e1,stroke:#ff6f00,stroke-width:2px
+    classDef cloud fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    
+    class LB,CDN,SSL loadbalancer
+    class API1,API2,API3,WORKER application
+    class POSTGRES_PRIMARY,POSTGRES_REPLICA,REDIS_CLUSTER database
+    class PGVECTOR_PRIMARY,PGVECTOR_REPLICA,FAISS_CLUSTER vector
+    class OTEL_COLLECTOR,PROMETHEUS,GRAFANA,ALERTMANAGER observability
+    class OPENAI,MONITORING,SECRETS external
+    class K8S,DOCKER,HELM,OPERATOR orchestration
+    class AWS,GCP,AZURE,HYBRID cloud
+```
 
 ## 🚀 **Deployment Options**
 
