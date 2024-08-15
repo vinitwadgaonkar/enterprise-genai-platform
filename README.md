@@ -192,6 +192,244 @@ graph TB
 
 ---
 
+## 🌟 **Feature Capabilities Mind Map**
+
+<div align="center">
+
+### **🎯 Complete Platform Feature Overview**
+
+</div>
+
+```mermaid
+mindmap
+  root((🚀 Enterprise GenAI Platform))
+    🧠 AI Capabilities
+      GPT-4 Integration
+      Text Embeddings
+      RAG Chains
+      Tool Calling
+      Memory Management
+      Chain Orchestration
+    🔧 Configuration
+      YAML Workflows
+      Prompt Templates
+      Agent Configs
+      Environment Variables
+      Config Validation
+      Template Engine
+    📊 Observability
+      OpenTelemetry
+      Prometheus
+      Grafana
+      Structured Logging
+      Metrics Collection
+      Performance Tracking
+    🛠️ Tools & Integrations
+      SQL Execution
+      API Calls
+      Custom Tools
+      Tool Registry
+      Authentication
+      Caching Layer
+    🧪 Quality Assurance
+      Golden Tests
+      Hallucination Detection
+      Automated Evals
+      Performance Monitoring
+      Quality Metrics
+      Test Coverage
+    🗄️ Data & Storage
+      PostgreSQL
+      pgvector
+      Faiss
+      Redis Cache
+      File Storage
+      Backup Systems
+    🔍 Search & Retrieval
+      Vector Search
+      Query Rewriting
+      Cross-Encoder Reranking
+      Hybrid Search
+      Context Assembly
+      Relevance Scoring
+    🚀 Deployment
+      Docker Containers
+      Kubernetes Ready
+      CI/CD Pipeline
+      Security Scanning
+      SBOM Generation
+      Cloud Deployment
+```
+
+---
+
+## 🎯 **User Journey Flow**
+
+<div align="center">
+
+### **👤 Complete User Experience Journey**
+
+</div>
+
+```mermaid
+journey
+    title User Journey: From Discovery to Production Mastery
+    section Discovery Phase
+      Visit GitHub Repository: 5: User
+      Read Documentation: 4: User
+      Explore Architecture Diagrams: 5: User
+      Clone Repository: 5: User
+    section Setup Phase
+      Configure Environment: 3: User
+      Run Setup Script: 4: User
+      Start Docker Services: 5: User
+      Verify Installation: 5: User
+    section Development Phase
+      Create First Workflow: 4: User
+      Configure Agent: 4: User
+      Test Configuration: 5: User
+      Debug Issues: 3: User
+    section Production Phase
+      Deploy to Staging: 4: User
+      Run Integration Tests: 5: User
+      Deploy to Production: 5: User
+      Monitor Performance: 5: User
+    section Optimization Phase
+      View Dashboards: 5: User
+      Analyze Metrics: 4: User
+      Optimize Performance: 5: User
+      Scale Infrastructure: 4: User
+```
+
+---
+
+## 🔄 **Component Interaction Sequence**
+
+<div align="center">
+
+### **⚡ Real-time System Interactions**
+
+</div>
+
+```mermaid
+sequenceDiagram
+    participant U as 👤 User
+    participant A as 🚀 API Gateway
+    participant W as ⚙️ Workflow Engine
+    participant L as 🔗 LangChain
+    participant V as 🗄️ Vector Store
+    participant O as 🧠 OpenAI
+    participant M as 📊 Metrics
+    participant G as 📈 Grafana
+    
+    U->>A: POST /workflows/execute
+    Note over U,A: User initiates workflow execution
+    
+    A->>W: Load Workflow Config
+    Note over A,W: YAML configuration parsing
+    
+    W->>L: Initialize RAG Chain
+    Note over W,L: LangChain orchestration setup
+    
+    L->>V: Vector Search Query
+    Note over L,V: Embedding-based retrieval
+    
+    V-->>L: Retrieved Documents
+    Note over V,L: Context documents returned
+    
+    L->>O: Generate Embeddings
+    Note over L,O: text-embedding-3-large API call
+    
+    O-->>L: Embedding Vectors
+    Note over O,L: High-dimensional vectors
+    
+    L->>O: LLM Call with Context
+    Note over L,O: GPT-4 with retrieved context
+    
+    O-->>L: Generated Response
+    Note over O,L: AI-generated answer
+    
+    L-->>W: Processed Result
+    Note over L,W: Formatted response
+    
+    W->>M: Update Metrics
+    Note over W,M: Performance tracking
+    
+    M-->>W: Performance Data
+    Note over M,W: Token usage, latency
+    
+    W->>G: Send Metrics
+    Note over W,G: Real-time dashboard update
+    
+    W-->>A: Execution Result
+    Note over W,A: Final response data
+    
+    A-->>U: JSON Response
+    Note over A,U: Complete workflow result
+    
+    Note over U,G: Complete request lifecycle with full observability
+```
+
+---
+
+## 🚀 **Deployment Pipeline Flow**
+
+<div align="center">
+
+### **🔄 Enterprise-Grade CI/CD Pipeline**
+
+</div>
+
+```mermaid
+flowchart LR
+    A[📝 Code Commit] --> B[🔍 Linting & Tests]
+    B --> C[🔒 Security Scan]
+    C --> D[📦 Build Docker Image]
+    D --> E[🧪 Integration Tests]
+    E --> F[📊 Performance Tests]
+    F --> G[🚀 Deploy to Staging]
+    G --> H[✅ Smoke Tests]
+    H --> I[🎯 Deploy to Production]
+    I --> J[📈 Monitor Metrics]
+    J --> K[🔔 Alert on Issues]
+    
+    subgraph "🔧 Development Phase"
+        A
+        B
+        C
+    end
+    
+    subgraph "🏗️ Build Phase"
+        D
+        E
+        F
+    end
+    
+    subgraph "🚀 Deployment Phase"
+        G
+        H
+        I
+    end
+    
+    subgraph "📊 Monitoring Phase"
+        J
+        K
+    end
+    
+    %% Styling
+    classDef development fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef build fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#000
+    classDef deployment fill:#fff3e0,stroke:#ef6c00,stroke-width:2px,color:#000
+    classDef monitoring fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    
+    class A,B,C development
+    class D,E,F build
+    class G,H,I deployment
+    class J,K monitoring
+```
+
+---
+
 ## 🚀 **Quick Start Guide**
 
 ### **1. Clone & Setup**
