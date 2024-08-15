@@ -167,16 +167,16 @@ graph TB
     OTEL --> COLLECTOR
     
     %% Styling
-    classDef client fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef api fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef core fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
-    classDef langchain fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef vector fill:#fce4ec,stroke:#880e4f,stroke-width:2px
-    classDef retrieval fill:#f1f8e9,stroke:#33691e,stroke-width:2px
-    classDef tools fill:#e0f2f1,stroke:#004d40,stroke-width:2px
-    classDef observability fill:#fff8e1,stroke:#ff6f00,stroke-width:2px
-    classDef evaluation fill:#fce4ec,stroke:#c2185b,stroke-width:2px
-    classDef infrastructure fill:#e3f2fd,stroke:#0277bd,stroke-width:2px
+    classDef client fill:#f8f9fa,stroke:#495057,stroke-width:2px,color:#000
+    classDef api fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    classDef core fill:#e8f5e8,stroke:#388e3c,stroke-width:2px,color:#000
+    classDef langchain fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#000
+    classDef vector fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
+    classDef retrieval fill:#f1f8e9,stroke:#689f38,stroke-width:2px,color:#000
+    classDef tools fill:#e0f2f1,stroke:#00796b,stroke-width:2px,color:#000
+    classDef observability fill:#fff8e1,stroke:#ff8f00,stroke-width:2px,color:#000
+    classDef evaluation fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    classDef infrastructure fill:#e1f5fe,stroke:#0288d1,stroke-width:2px,color:#000
     
     class WEB,API_CLIENT,MOBILE client
     class FASTAPI,AUTH,RATE,HEALTH api
@@ -309,13 +309,13 @@ flowchart TD
     LOG_ENTRY --> END([🎉 Response Delivered])
     
     %% Styling
-    classDef start fill:#e8f5e8,stroke:#2e7d32,stroke-width:3px
-    classDef process fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
-    classDef storage fill:#fce4ec,stroke:#c2185b,stroke-width:2px
-    classDef llm fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
-    classDef observability fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
-    classDef quality fill:#e0f2f1,stroke:#00695c,stroke-width:2px
-    classDef output fill:#e8f5e8,stroke:#2e7d32,stroke-width:3px
+    classDef start fill:#e8f5e8,stroke:#2e7d32,stroke-width:3px,color:#000
+    classDef process fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#000
+    classDef storage fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
+    classDef llm fill:#fff3e0,stroke:#ef6c00,stroke-width:2px,color:#000
+    classDef observability fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    classDef quality fill:#e0f2f1,stroke:#00695c,stroke-width:2px,color:#000
+    classDef output fill:#e8f5e8,stroke:#2e7d32,stroke-width:3px,color:#000
     
     class START,END start
     class WORKFLOW_STEPS,AGENT_EXEC,STEP1,STEP2,STEP3,STEP4,TOOL_SELECTION,SQL_EXEC,API_EXEC,CUSTOM_EXEC process
@@ -454,16 +454,16 @@ graph LR
     SBOM --> DEPLOY
     
     %% Styling
-    classDef frontend fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
-    classDef api fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
-    classDef ai fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
-    classDef storage fill:#fce4ec,stroke:#c2185b,stroke-width:2px
-    classDef search fill:#f1f8e9,stroke:#33691e,stroke-width:2px
-    classDef tools fill:#e0f2f1,stroke:#004d40,stroke-width:2px
-    classDef observability fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
-    classDef quality fill:#e0f2f1,stroke:#00695c,stroke-width:2px
-    classDef infrastructure fill:#e3f2fd,stroke:#0277bd,stroke-width:2px
-    classDef cicd fill:#fff8e1,stroke:#ff6f00,stroke-width:2px
+    classDef frontend fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef api fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#000
+    classDef ai fill:#fff3e0,stroke:#ef6c00,stroke-width:2px,color:#000
+    classDef storage fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
+    classDef search fill:#f1f8e9,stroke:#33691e,stroke-width:2px,color:#000
+    classDef tools fill:#e0f2f1,stroke:#004d40,stroke-width:2px,color:#000
+    classDef observability fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    classDef quality fill:#e0f2f1,stroke:#00695c,stroke-width:2px,color:#000
+    classDef infrastructure fill:#e3f2fd,stroke:#0277bd,stroke-width:2px,color:#000
+    classDef cicd fill:#fff8e1,stroke:#ff6f00,stroke-width:2px,color:#000
     
     class WEB,MOBILE,CLI,SDK frontend
     class FASTAPI,ASYNC,STREAMING,AUTH api
@@ -750,14 +750,14 @@ graph TB
     K8S --> HYBRID
     
     %% Styling
-    classDef loadbalancer fill:#e8f5e8,stroke:#2e7d32,stroke-width:3px
-    classDef application fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
-    classDef database fill:#fce4ec,stroke:#c2185b,stroke-width:2px
-    classDef vector fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
-    classDef observability fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
-    classDef external fill:#e0f2f1,stroke:#00695c,stroke-width:2px
-    classDef orchestration fill:#fff8e1,stroke:#ff6f00,stroke-width:2px
-    classDef cloud fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef loadbalancer fill:#e8f5e8,stroke:#2e7d32,stroke-width:3px,color:#000
+    classDef application fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#000
+    classDef database fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
+    classDef vector fill:#fff3e0,stroke:#ef6c00,stroke-width:2px,color:#000
+    classDef observability fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    classDef external fill:#e0f2f1,stroke:#00695c,stroke-width:2px,color:#000
+    classDef orchestration fill:#fff8e1,stroke:#ff6f00,stroke-width:2px,color:#000
+    classDef cloud fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
     
     class LB,CDN,SSL loadbalancer
     class API1,API2,API3,WORKER application
